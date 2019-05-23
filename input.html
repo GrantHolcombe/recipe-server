@@ -1,0 +1,44 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Input recepiesbook</title>
+
+  <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<textarea id="ing" name="ingredients" rows="8" cols="80"></textarea>
+<textarea id="ins" name="instructions" rows="8" cols="80"></textarea>
+<button onclick="submit()">Add Recepie</button>
+<body>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></<script>
+
+  </script>
+
+  <script>
+  var submit = () => {
+    var ing = $('#ing').val()
+    var ins = $('#ins').val()
+    var data = {ingredients: ing.replace(' ','').split(','), instructions: ins}
+    $.ajax({
+           url: "http://localhost:3000/new",
+           type: "POST",
+           crossDomain: true,
+           data: data,
+           dataType: "json",
+           success: function (response) {
+               var resp = JSON.parse(response)
+               console.log(resp.status);
+           },
+           error: function (xhr, status) {
+               console.log("error");
+           }
+       });
+  }
+  </script>
+</body>
+</html>
