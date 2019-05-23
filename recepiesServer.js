@@ -51,6 +51,7 @@ var BodyParser = require("body-parser")
     port = process.env.PORT || 3000;
 
     app.use(cors({origin: 'http://ec2-13-57-244-99.us-west-1.compute.amazonaws.com:3000'}));
+    app.use(cors({origin: null}));
     app.use(BodyParser.json());
     app.use(BodyParser.urlencoded({ extended: true }));
 
