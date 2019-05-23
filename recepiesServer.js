@@ -1,24 +1,28 @@
 const cors = require('cors');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require("mongodb").ObjectID;
-const uri = "mongodb+srv://grant:admin@recepiesbook-hj80z.mongodb.net/test?retryWrites=true";
+const uri = process.env.MONGOURI;
 const client = new MongoClient(uri, { useNewUrlParser: true });
 var database, collection, appUsersCollection;
 
 const multer = require('multer');
 const multerS3 = require('multer-s3');
 const aws = require('aws-sdk');
+const awsKey = process.env.AWSKEY;
+const awsSecret = process.env.AWSSECRET;
 
 aws.config.update({
     // Your SECRET ACCESS KEY from AWS should go here,
     // Never share it!
     // Setup Env Variable, e.g: process.env.SECRET_ACCESS_KEY
-    secretAccessKey: "vvccLKTnU31rKB7SoJiHANMDMXQ+WtldmzBp5/SR",
+    secretAccessKey: awsSecret,
     // Not working key, Your ACCESS KEY ID from AWS should go here,
     // Never share it!
     // Setup Env Variable, e.g: process.env.ACCESS_KEY_ID
-    accessKeyId: "AKIAJHBPYV7UV5WKSVCQ",
+    accessKeyId: awsKey,
     region: 'us-east-1' // region of your bucket
 });
 
@@ -50,8 +54,7 @@ var BodyParser = require("body-parser")
     app = express(),
     port = process.env.PORT || 3000;
 
-    app.use(cors({origin: 'http://ec2-13-57-244-99.us-west-1.compute.amazonaws.com:3000'}));
-    app.use(cors({origin: null}));
+    app.use(cors({origin: process.env.ORIGIN}));
     app.use(BodyParser.json());
     app.use(BodyParser.urlencoded({ extended: true }));
 
@@ -64,8 +67,8 @@ const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 // API Access link for creating client ID and secret:
 // https://code.google.com/apis/console/
-var GOOGLE_CLIENT_ID      = '279944124460-27htt1s3hso9m3ovj5tvobr2mrj6k2k2.apps.googleusercontent.com'
-  , GOOGLE_CLIENT_SECRET  = '8jrPTDGattNOxubnkJrHbkuk';
+var GOOGLE_CLIENT_ID      = process.env.GOOGLEID
+  , GOOGLE_CLIENT_SECRET  = process.env.GOOGLESECRET;
 
 
 
@@ -98,7 +101,7 @@ passport.use(new GoogleStrategy({
     //then edit your /etc/hosts local file to point on your private IP.
     //Also both sign-in button + callbackURL has to be share the same url, otherwise two cookies will be created and lead to lost your session
     //if you use it.
-    callbackURL: "http://ec2-13-57-244-99.us-west-1.compute.amazonaws.com:3000/auth/google/callback",
+    callbackURL: "http://localhost:3000/auth/google/callback",
     passReqToCallback   : true
   }, (request, accessToken, refreshToken, profile, done) => {
        done(null, profile);
@@ -123,7 +126,6 @@ app.listen(3000, () => {
         var DATABASE_NAME = 'recipeBook'
         database = client.db(DATABASE_NAME);
         collection = database.collection("recipes");
-        appUsersCollection = database.collection("appUsers");
         console.log("Connected to `" + DATABASE_NAME + "`!");
     });
 });

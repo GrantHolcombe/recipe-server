@@ -25,7 +25,7 @@
     var ins = $('#ins').val()
     var data = {ingredients: ing.replace(' ','').split(','), instructions: ins}
     $.ajax({
-           url: "http://13.57.244.99:3000/new",
+           url: "http://localhost:3000/new",
            type: "POST",
            crossDomain: true,
            data: data,

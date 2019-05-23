@@ -1,0 +1,40 @@
+{
+  "name": "recepies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "recepiesServer.js",
+  "dependencies": {
+    "aws-sdk": "^2.450.0",
+    "body-parser": "^1.18.3",
+    "connect-redis": "^3.4.1",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "bcrypt": "^3.0.6",
+    "cookie-session": "^1.3.3",
+    "dotenv": "^8.0.0",
+    "express": "^4.16.4",
+    "express-session": "^1.16.1",
+    "multer-s3": "^2.9.0",
+    "multer": "^1.4.1",
+    "mongodb": "^3.2.3",
+    "passport-google-oauth": "^2.0.0",
+    "passport": "^0.4.0",
+    "passport-google-oauth2": "^0.2.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GrantHolcombe/demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GrantHolcombe/demo/issues"
+  },
+  "homepage": "https://github.com/GrantHolcombe/demo#readme"
+}
