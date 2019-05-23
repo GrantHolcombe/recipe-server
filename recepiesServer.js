@@ -50,7 +50,7 @@ var BodyParser = require("body-parser")
     app = express(),
     port = process.env.PORT || 3000;
 
-    app.use(cors({origin: 'http://localhost:3001'}));
+    app.use(cors({origin: 'http://13.57.244.99:3000'}));
     app.use(BodyParser.json());
     app.use(BodyParser.urlencoded({ extended: true }));
 
