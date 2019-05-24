@@ -101,7 +101,7 @@ passport.use(new GoogleStrategy({
     //then edit your /etc/hosts local file to point on your private IP.
     //Also both sign-in button + callbackURL has to be share the same url, otherwise two cookies will be created and lead to lost your session
     //if you use it.
-    callbackURL: `${process.env.ORIGIN}/auth/google/callback`,
+    callbackURL: `http://ec2-13-57-244-99.us-west-1.compute.amazonaws.com/auth/google/callback`,
     passReqToCallback   : true
   }, (request, accessToken, refreshToken, profile, done) => {
        done(null, profile);
