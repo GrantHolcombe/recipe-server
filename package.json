@@ -4,7 +4,7 @@
   "description": "",
   "main": "recepiesServer.js",
   "dependencies": {
-    "aws-sdk": "^2.450.0",
+    "aws-sdk": "^2.814.0",
     "body-parser": "^1.18.3",
     "connect-redis": "^3.4.1",
     "cookie-parser": "^1.4.4",
